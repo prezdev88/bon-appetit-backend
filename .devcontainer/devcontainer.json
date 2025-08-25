@@ -1,6 +1,6 @@
 
 {
-	"name": "avl-packet-store",
+	"name": "bon-appetit-backend",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "dev",
 	"workspaceFolder": "/bon-appetit-backend",
@@ -70,7 +70,8 @@
 				"eamodio.gitlens",
 				"hediet.vscode-drawio",
 				"bierner.markdown-mermaid",
-				"cweijan.vscode-postgresql-client2"
+				"cweijan.vscode-postgresql-client2",
+				"ms-ossdata.vscode-pgsql"
 			]
 		}
 	}
