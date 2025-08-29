@@ -14,6 +14,7 @@ services:
       - zookeeper
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_SERVER=${POSTGRES_NAME}
 
   zookeeper:
     image: bitnami/zookeeper:3.8

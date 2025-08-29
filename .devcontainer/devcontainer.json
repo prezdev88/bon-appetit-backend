@@ -70,8 +70,7 @@
 				"eamodio.gitlens",
 				"hediet.vscode-drawio",
 				"bierner.markdown-mermaid",
-				"cweijan.vscode-postgresql-client2",
-				"ms-ossdata.vscode-pgsql"
+				"cweijan.vscode-postgresql-client2"
 			]
 		}
 	}
