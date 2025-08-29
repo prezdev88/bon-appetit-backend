@@ -8,6 +8,8 @@ import java.util.Optional;
 public interface AppRoleRepository {
     Optional<AppRole> findById(Long id);
     
+    Optional<AppRole> findByName(String name);
+
     AppRole save(AppRole role);
     
     List<AppRole> findAll();

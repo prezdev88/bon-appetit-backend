@@ -29,4 +29,9 @@ public class AppRoleRepositoryAdapter implements AppRoleRepository {
     public List<AppRole> findAll() {
         return repo.findAll();
     }
+
+    @Override
+    public Optional<AppRole> findByName(String name) {
+        return repo.findByName(name);
+    }
 }
