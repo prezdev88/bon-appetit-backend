@@ -2,6 +2,7 @@ package org.prezdev.bonappetit.application.waiter;
 
 import lombok.RequiredArgsConstructor;
 
+import org.prezdev.bonappetit.application.security.PasswordService;
 import org.prezdev.bonappetit.application.waiter.dto.WaiterDto;
 import org.prezdev.bonappetit.domain.model.identity.AppRole;
 import org.prezdev.bonappetit.domain.model.identity.AppUser;
@@ -19,7 +20,9 @@ public class AddWaiterService {
 
     private final AppUserRepository userRepo;
     private final AppRoleRepository roleRepo;
+    private final PasswordService passwordService;
 
+    private static final String DEFAULT_PIN = "1234";
     private static final String WAITER_ROLE = "WAITER";
 
     @Transactional
@@ -36,6 +39,7 @@ public class AddWaiterService {
         AppUser user = AppUser.builder()
                 .name(cmd.name().trim())
                 .enabled(true)
+                .pinHash(passwordService.hash(DEFAULT_PIN))
                 .build();
         user.getRoles().add(waiterRole);
 

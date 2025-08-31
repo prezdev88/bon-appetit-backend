@@ -117,3 +117,5 @@ SELECT
     ORDER BY os.changed_at DESC, os.id DESC
     LIMIT 1) AS last_status
 FROM food_order o;
+
+ALTER TABLE app_user ADD COLUMN pin_hash TEXT;

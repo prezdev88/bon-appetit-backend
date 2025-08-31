@@ -36,4 +36,7 @@ public class AppUser {
         inverseJoinColumns = @JoinColumn(name = "role_id", nullable = false)
     )
     private Set<AppRole> roles = new HashSet<>();
+
+    @Column(name = "pin_hash", nullable = false)
+    private String pinHash;
 }
