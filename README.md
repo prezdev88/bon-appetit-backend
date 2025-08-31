@@ -16,3 +16,7 @@ curl -X POST http://localhost:8080/api/waiters \
 ```bash
 curl -X GET http://localhost:8080/api/waiters
 ```
+
+```bash
+curl -X GET http://localhost:8080/api/waiters?page=0&size=10&sort=id,asc
+```

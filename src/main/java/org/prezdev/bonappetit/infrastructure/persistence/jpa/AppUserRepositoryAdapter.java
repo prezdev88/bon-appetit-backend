@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.prezdev.bonappetit.domain.model.identity.AppUser;
 import org.prezdev.bonappetit.domain.repository.AppUserRepository;
 import org.prezdev.bonappetit.infrastructure.persistence.jpa.springdata.SpringDataAppUserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -36,7 +39,7 @@ public class AppUserRepositoryAdapter implements AppUserRepository {
     }
 
     @Override
-    public List<AppUser> findAllByRoleName(String roleName) {
-        return repo.findAllByRoles_Name(roleName);
+    public Page<AppUser> findAllByRoleName(String roleName, int page, int size, Sort sort) {
+        return repo.findAllByRoles_Name(roleName, PageRequest.of(page, size, sort));
     }
 }
