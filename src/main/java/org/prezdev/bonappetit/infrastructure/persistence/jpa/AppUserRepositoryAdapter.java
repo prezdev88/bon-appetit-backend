@@ -34,4 +34,9 @@ public class AppUserRepositoryAdapter implements AppUserRepository {
     public List<AppUser> findAll() {
         return repo.findAll();
     }
+
+    @Override
+    public List<AppUser> findAllByRoleName(String roleName) {
+        return repo.findAllByRoles_Name(roleName);
+    }
 }

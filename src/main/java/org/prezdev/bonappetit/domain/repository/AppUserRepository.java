@@ -13,4 +13,6 @@ public interface AppUserRepository {
     void deleteById(Long id);
     
     List<AppUser> findAll();
+
+    List<AppUser> findAllByRoleName(String roleName);
 }

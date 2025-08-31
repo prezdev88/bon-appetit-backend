@@ -1,4 +1,4 @@
-package org.prezdev.bonappetit.application.waiter;
+package org.prezdev.bonappetit.application.waiter.dto;
 
 import java.util.List;
 
