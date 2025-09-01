@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   dev:
+    container_name: ${APP_NAME}
     ports:
       - "6060:6060"
     image: mcr.microsoft.com/devcontainers/java:1-21-bullseye
