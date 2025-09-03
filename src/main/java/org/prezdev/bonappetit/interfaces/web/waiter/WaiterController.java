@@ -26,7 +26,7 @@ public class WaiterController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public WaiterDto add(@Valid @RequestBody AddWaiterRequest req) {
-        return addWaiter.execute(new AddWaiterCommand(req.name()));
+        return addWaiter.execute(new AddWaiterCommand(req));
     }
 
     @GetMapping

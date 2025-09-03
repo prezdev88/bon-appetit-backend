@@ -9,7 +9,7 @@ postgresql://admin:123123@bonappetit-backend-postgres:5432/bonappetit_db?options
 ```bash
 curl -X POST http://localhost:8080/api/waiters \
     -H "Content-Type: application/json" \
-    -d '{"name":"Juan Pérez"}'
+    -d '{"name":"Juan Pérez", "pin":"11222333"}'
 ```
 
 ## Get list of waiters

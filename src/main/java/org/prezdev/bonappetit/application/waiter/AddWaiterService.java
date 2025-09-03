@@ -22,13 +22,16 @@ public class AddWaiterService {
     private final AppRoleRepository roleRepo;
     private final PasswordService passwordService;
 
-    private static final String DEFAULT_PIN = "1234";
     private static final String WAITER_ROLE = "WAITER";
 
     @Transactional
     public WaiterDto execute(AddWaiterCommand cmd) {
-        if (cmd == null || !StringUtils.hasText(cmd.name())) {
+        if (cmd == null || !StringUtils.hasText(cmd.addWaiterRequest().name())) {
             throw new IllegalArgumentException("name is required");
+        }
+
+        if (!StringUtils.hasText(cmd.addWaiterRequest().pin())) {
+            throw new IllegalArgumentException("pin is required");
         }
 
         // 1) Buscar rol WAITER (semilla ya insertada en tu script SQL)
@@ -37,9 +40,9 @@ public class AddWaiterService {
 
         // 2) Crear usuario habilitado con rol WAITER
         AppUser user = AppUser.builder()
-                .name(cmd.name().trim())
+                .name(cmd.addWaiterRequest().name().trim())
                 .enabled(true)
-                .pinHash(passwordService.hash(DEFAULT_PIN))
+                .pinHash(passwordService.hash(cmd.addWaiterRequest().pin().trim()))
                 .build();
         user.getRoles().add(waiterRole);
 

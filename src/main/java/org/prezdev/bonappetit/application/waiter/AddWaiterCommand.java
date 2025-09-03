@@ -1,7 +1,7 @@
 package org.prezdev.bonappetit.application.waiter;
 
-import jakarta.validation.constraints.NotBlank;
+import org.prezdev.bonappetit.interfaces.web.waiter.AddWaiterRequest;
 
 public record AddWaiterCommand(
-    @NotBlank(message = "name is required") String name
+    AddWaiterRequest addWaiterRequest
 ) {}
