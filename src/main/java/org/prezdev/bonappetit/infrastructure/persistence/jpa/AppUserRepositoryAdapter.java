@@ -42,4 +42,9 @@ public class AppUserRepositoryAdapter implements AppUserRepository {
     public Page<AppUser> findAllByRoleName(String roleName, int page, int size, Sort sort) {
         return repo.findAllByRoles_Name(roleName, PageRequest.of(page, size, sort));
     }
+
+    @Override
+    public Optional<AppUser> findWaiterByUserIdNumber(String userIdNumber) {
+        return repo.findWaiterByUserIdNumber(userIdNumber);
+    }
 }

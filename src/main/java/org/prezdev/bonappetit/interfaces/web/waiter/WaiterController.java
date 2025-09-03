@@ -8,12 +8,15 @@ import org.prezdev.bonappetit.application.waiter.dto.PageModel;
 import org.prezdev.bonappetit.application.waiter.AddWaiterCommand;
 import org.prezdev.bonappetit.application.waiter.AddWaiterService;
 import org.prezdev.bonappetit.application.waiter.ListWaitersService;
+import org.prezdev.bonappetit.application.waiter.LoginWaiterService;
 import org.prezdev.bonappetit.application.waiter.dto.WaiterDto;
 import org.prezdev.bonappetit.application.waiter.dto.WaiterListDto;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/waiters")
@@ -22,6 +25,7 @@ public class WaiterController {
 
     private final AddWaiterService addWaiter;
     private final ListWaitersService listWaiters;
+    private final LoginWaiterService login;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -41,6 +45,16 @@ public class WaiterController {
         ));
 
         return listWaiters.execute(page, size, sortObject);
+    }
+    
+    @PostMapping("/login")
+    @ResponseStatus(HttpStatus.OK)
+    public LoginResponse login(@Valid @RequestBody LoginRequest req) {
+        try {
+            return login.login(req.userIdNumber());
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+        }
     }
     
 }

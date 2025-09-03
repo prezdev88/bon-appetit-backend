@@ -2,7 +2,6 @@ package org.prezdev.bonappetit.application.waiter;
 
 import lombok.RequiredArgsConstructor;
 
-import org.prezdev.bonappetit.application.security.PasswordService;
 import org.prezdev.bonappetit.application.waiter.dto.WaiterDto;
 import org.prezdev.bonappetit.domain.model.identity.AppRole;
 import org.prezdev.bonappetit.domain.model.identity.AppUser;
@@ -20,7 +19,6 @@ public class AddWaiterService {
 
     private final AppUserRepository userRepo;
     private final AppRoleRepository roleRepo;
-    private final PasswordService passwordService;
 
     private static final String WAITER_ROLE = "WAITER";
 
@@ -30,8 +28,8 @@ public class AddWaiterService {
             throw new IllegalArgumentException("name is required");
         }
 
-        if (!StringUtils.hasText(cmd.addWaiterRequest().pin())) {
-            throw new IllegalArgumentException("pin is required");
+        if (!StringUtils.hasText(cmd.addWaiterRequest().userIdNumber())) {
+            throw new IllegalArgumentException("user id number is required");
         }
 
         // 1) Buscar rol WAITER (semilla ya insertada en tu script SQL)
@@ -42,7 +40,7 @@ public class AddWaiterService {
         AppUser user = AppUser.builder()
                 .name(cmd.addWaiterRequest().name().trim())
                 .enabled(true)
-                .pinHash(passwordService.hash(cmd.addWaiterRequest().pin().trim()))
+                .userIdNumber(cmd.addWaiterRequest().userIdNumber().trim())
                 .build();
         user.getRoles().add(waiterRole);
 

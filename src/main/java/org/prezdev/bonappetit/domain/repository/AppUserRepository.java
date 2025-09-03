@@ -17,4 +17,6 @@ public interface AppUserRepository {
     List<AppUser> findAll();
 
     Page<AppUser> findAllByRoleName(String roleName, int page, int size, Sort sort);
+
+    Optional<AppUser> findWaiterByUserIdNumber(String userIdNumber);
 }

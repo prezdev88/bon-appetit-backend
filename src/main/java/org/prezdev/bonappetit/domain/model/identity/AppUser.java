@@ -37,6 +37,6 @@ public class AppUser {
     )
     private Set<AppRole> roles = new HashSet<>();
 
-    @Column(name = "pin_hash", nullable = false)
-    private String pinHash;
+    @Column(name = "user_id_number", nullable = false)
+    private String userIdNumber;
 }
