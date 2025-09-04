@@ -1,0 +1,27 @@
+### Create a waiter
+POST http://localhost:8080/api/waiters
+Content-Type: application/json
+
+{
+  "name": "Juan Pérez",
+  "userIdNumber": "16899344"
+}
+
+
+### Get list of waiters
+GET http://localhost:8080/api/waiters
+Accept: application/json
+
+
+### Get paginated list of waiters
+GET http://localhost:8080/api/waiters?page=0&size=10&sort=id,asc
+Accept: application/json
+
+
+### Waiter login
+POST http://localhost:8080/api/waiters/login
+Content-Type: application/json
+
+{
+  "userIdNumber": "11222333"
+}
