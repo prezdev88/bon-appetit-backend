@@ -70,7 +70,8 @@
 				"eamodio.gitlens",
 				"hediet.vscode-drawio",
 				"bierner.markdown-mermaid",
-				"cweijan.vscode-postgresql-client2"
+				"cweijan.vscode-postgresql-client2",
+				"humao.rest-client"
 			]
 		}
 	}
