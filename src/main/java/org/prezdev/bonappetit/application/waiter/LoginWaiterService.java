@@ -14,7 +14,7 @@ public class LoginWaiterService {
 
     public LoginResponse login(String userIdNumber) {
         return userRepo.findWaiterByUserIdNumber(userIdNumber)
-            .map(user -> new LoginResponse(user.getName()))
+            .map(user -> new LoginResponse(user.getId(), user.getName()))
             .orElseThrow(() -> new IllegalArgumentException("User not found"));
     }
 
