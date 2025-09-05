@@ -1,9 +1,9 @@
 package org.prezdev.bonappetit.domain.repository;
 
-import org.prezdev.bonappetit.domain.model.product.Product;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.prezdev.bonappetit.domain.model.Product;
 
 public interface ProductRepository {
     Optional<Product> findById(Long id);

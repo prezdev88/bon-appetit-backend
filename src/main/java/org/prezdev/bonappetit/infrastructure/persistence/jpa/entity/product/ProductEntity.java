@@ -1,4 +1,4 @@
-package org.prezdev.bonappetit.domain.model.product;
+package org.prezdev.bonappetit.infrastructure.persistence.jpa.entity.product;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +11,7 @@ import java.math.BigDecimal;
     uniqueConstraints = @UniqueConstraint(name = "uq_product_name", columnNames = "name")
 )
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
-public class Product {
+public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

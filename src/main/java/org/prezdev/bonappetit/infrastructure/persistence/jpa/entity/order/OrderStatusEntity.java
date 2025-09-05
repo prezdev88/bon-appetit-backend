@@ -1,16 +1,17 @@
-package org.prezdev.bonappetit.domain.model.order;
+package org.prezdev.bonappetit.infrastructure.persistence.jpa.entity.order;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.prezdev.bonappetit.domain.model.identity.AppUser;
+import org.prezdev.bonappetit.domain.model.OrderStatusType;
+import org.prezdev.bonappetit.infrastructure.persistence.jpa.entity.identity.AppUserEntity;
 
 import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "order_status")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
-public class OrderStatus {
+public class OrderStatusEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +20,7 @@ public class OrderStatus {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false,
             foreignKey = @ForeignKey(name = "fk_order_status_order"))
-    private FoodOrder order;
+    private FoodOrderEntity order;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 40, nullable = false)
@@ -32,5 +33,5 @@ public class OrderStatus {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "changed_by", nullable = false,
             foreignKey = @ForeignKey(name = "fk_order_status_user"))
-    private AppUser changedBy;
+    private AppUserEntity changedBy;
 }

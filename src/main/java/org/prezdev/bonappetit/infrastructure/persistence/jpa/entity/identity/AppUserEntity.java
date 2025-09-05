@@ -1,4 +1,4 @@
-package org.prezdev.bonappetit.domain.model.identity;
+package org.prezdev.bonappetit.infrastructure.persistence.jpa.entity.identity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "app_user")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
-public class AppUser {
+public class AppUserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +35,7 @@ public class AppUser {
         joinColumns = @JoinColumn(name = "user_id", nullable = false),
         inverseJoinColumns = @JoinColumn(name = "role_id", nullable = false)
     )
-    private Set<AppRole> roles = new HashSet<>();
+    private Set<AppRoleEntity> roles = new HashSet<>();
 
     @Column(name = "user_id_number", nullable = false)
     private String userIdNumber;

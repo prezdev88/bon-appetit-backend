@@ -1,9 +1,9 @@
 package org.prezdev.bonappetit.domain.repository;
 
-import org.prezdev.bonappetit.domain.model.dining.DiningTable;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.prezdev.bonappetit.domain.model.DiningTable;
 
 public interface DiningTableRepository {
     Optional<DiningTable> findById(Long id);

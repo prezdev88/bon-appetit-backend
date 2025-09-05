@@ -1,4 +1,4 @@
-package org.prezdev.bonappetit.domain.model.identity;
+package org.prezdev.bonappetit.infrastructure.persistence.jpa.entity.identity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +12,7 @@ import java.util.Set;
     uniqueConstraints = @UniqueConstraint(name = "uq_app_role_name", columnNames = "name")
 )
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
-public class AppRole {
+public class AppRoleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,5 +23,5 @@ public class AppRole {
 
     @Builder.Default
     @ManyToMany(mappedBy = "roles")
-    private Set<AppUser> users = new HashSet<>();
+    private Set<AppUserEntity> users = new HashSet<>();
 }

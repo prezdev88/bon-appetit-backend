@@ -1,4 +1,4 @@
-package org.prezdev.bonappetit.domain.model.dining;
+package org.prezdev.bonappetit.infrastructure.persistence.jpa.entity.dining;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.prezdev.bonappetit.domain.model.order.FoodOrder;
+import org.prezdev.bonappetit.infrastructure.persistence.jpa.entity.order.FoodOrderEntity;
 
 @Entity
 @Table(
@@ -14,7 +14,7 @@ import org.prezdev.bonappetit.domain.model.order.FoodOrder;
     uniqueConstraints = @UniqueConstraint(name = "uq_dining_table_number", columnNames = "number")
 )
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
-public class DiningTable {
+public class DiningTableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,5 +25,5 @@ public class DiningTable {
 
     @OneToMany(mappedBy = "table")
     @Builder.Default
-    private List<FoodOrder> orders = new ArrayList<>();
+    private List<FoodOrderEntity> orders = new ArrayList<>();
 }

@@ -1,8 +1,10 @@
 package org.prezdev.bonappetit.infrastructure.persistence.jpa;
 
 import lombok.RequiredArgsConstructor;
-import org.prezdev.bonappetit.domain.model.product.Product;
+import org.prezdev.bonappetit.domain.model.Product;
 import org.prezdev.bonappetit.domain.repository.ProductRepository;
+import org.prezdev.bonappetit.infrastructure.persistence.jpa.entity.product.ProductEntity;
+import org.prezdev.bonappetit.infrastructure.persistence.jpa.mapper.ProductJpaMapper;
 import org.prezdev.bonappetit.infrastructure.persistence.jpa.springdata.SpringDataProductRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,25 +16,31 @@ import java.util.Optional;
 public class ProductRepositoryAdapter implements ProductRepository {
 
     private final SpringDataProductRepository repo;
+    private final ProductJpaMapper mapper;
 
     @Override
     public Optional<Product> findById(Long id) {
-        return repo.findById(id);
+        return repo.findById(id).map(mapper::toDomain);
     }
 
     @Override
     public Optional<Product> findByName(String name) {
-        return repo.findByName(name);
+        return repo.findByName(name).map(mapper::toDomain);
     }
 
     @Override
     public List<Product> findEnabled() {
-        return repo.findByEnabledTrue();
+        return repo.findByEnabledTrue()
+                   .stream()
+                   .map(mapper::toDomain)
+                   .toList();
     }
 
     @Override
     public Product save(Product product) {
-        return repo.save(product);
+        ProductEntity entity = mapper.toEntity(product);
+        ProductEntity saved = repo.save(entity);
+        return mapper.toDomain(saved);
     }
 
     @Override

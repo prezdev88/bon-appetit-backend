@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.prezdev.bonappetit.application.waiter.dto.PageModel;
 import org.prezdev.bonappetit.application.waiter.dto.WaiterListDto;
-import org.prezdev.bonappetit.domain.model.identity.AppUser;
+import org.prezdev.bonappetit.domain.model.AppUser;
 import org.prezdev.bonappetit.domain.repository.AppUserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;

@@ -1,10 +1,10 @@
 package org.prezdev.bonappetit.domain.repository;
 
-import org.prezdev.bonappetit.domain.model.order.FoodOrder;
-
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
+
+import org.prezdev.bonappetit.domain.model.FoodOrder;
 
 public interface FoodOrderRepository {
     Optional<FoodOrder> findById(Long id);
