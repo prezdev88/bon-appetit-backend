@@ -44,7 +44,7 @@ public class AppUserRepositoryAdapter implements AppUserRepository {
     }
 
     @Override
-    public Optional<AppUser> findWaiterByUserIdNumber(String userIdNumber) {
-        return repo.findWaiterByUserIdNumber(userIdNumber);
+    public Optional<AppUser> findUserBy(String userIdNumber) {
+        return repo.findUserBy(userIdNumber);
     }
 }

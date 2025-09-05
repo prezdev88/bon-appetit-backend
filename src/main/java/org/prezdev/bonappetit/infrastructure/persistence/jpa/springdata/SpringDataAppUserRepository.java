@@ -20,5 +20,5 @@ public interface SpringDataAppUserRepository extends JpaRepository<AppUser, Long
              AND r.name = 'WAITER'
              AND u.enabled = true
            """)
-    Optional<AppUser> findWaiterByUserIdNumber(@Param("userIdNumber") String userIdNumber);
+    Optional<AppUser> findUserBy(@Param("userIdNumber") String userIdNumber);
 }

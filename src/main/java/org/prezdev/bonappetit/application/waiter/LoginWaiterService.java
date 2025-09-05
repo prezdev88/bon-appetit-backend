@@ -13,7 +13,7 @@ public class LoginWaiterService {
     private final AppUserRepository userRepo;
 
     public LoginResponse login(String userIdNumber) {
-        return userRepo.findWaiterByUserIdNumber(userIdNumber)
+        return userRepo.findUserBy(userIdNumber)
             .map(user -> new LoginResponse(user.getId(), user.getName()))
             .orElseThrow(() -> new IllegalArgumentException("User not found"));
     }
