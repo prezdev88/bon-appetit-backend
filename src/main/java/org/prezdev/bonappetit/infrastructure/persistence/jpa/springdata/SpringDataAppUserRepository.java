@@ -13,8 +13,6 @@ public interface SpringDataAppUserRepository extends JpaRepository<AppUserEntity
 
     Page<AppUserEntity> findAllByRoles_Name(String roleName, Pageable pageable);
 
-    //Page<AppUserEntity> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
-
     @Query("""
        SELECT u
        FROM AppUserEntity u
