@@ -10,7 +10,19 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface SpringDataAppUserRepository extends JpaRepository<AppUserEntity, Long> {
+
     Page<AppUserEntity> findAllByRoles_Name(String roleName, Pageable pageable);
+
+    //Page<AppUserEntity> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+
+    @Query("""
+       SELECT u
+       FROM AppUserEntity u
+       WHERE lower(function('unaccent', u.name))
+             LIKE lower(function('unaccent', concat('%', :name, '%')))
+       """)
+    Page<AppUserEntity> findAllByNameContainingIgnoreCase(@Param("name") String name, Pageable pageable);
+
 
     @Query("""
            SELECT u

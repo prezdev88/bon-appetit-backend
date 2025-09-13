@@ -25,3 +25,8 @@ Content-Type: application/json
 {
   "userIdNumber": "11222333"
 }
+
+
+### Search waiters by name
+GET http://localhost:8080/api/waiters/search?name=jua&page=0&size=10&sort=name,asc
+Accept: application/json 

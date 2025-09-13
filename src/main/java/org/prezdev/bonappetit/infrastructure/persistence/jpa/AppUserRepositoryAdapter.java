@@ -56,4 +56,10 @@ public class AppUserRepositoryAdapter implements AppUserRepository {
     public Optional<AppUser> findUserBy(String userIdNumber) {
         return repo.findUserBy(userIdNumber).map(mapper::toDomain);
     }
+
+    @Override
+    public Page<AppUser> findAllByName(String name, int page, int size, Sort sort) {
+        return repo.findAllByNameContainingIgnoreCase(name, PageRequest.of(page, size, sort))
+                   .map(mapper::toDomain);
+    }
 }
