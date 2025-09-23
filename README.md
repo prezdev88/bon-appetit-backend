@@ -27,3 +27,9 @@ curl -i -X POST http://localhost:8080/api/waiters/login \
     -H "Content-Type: application/json" \
     -d '{"userIdNumber":"11222333"}'
 ```
+
+## Search
+```bash
+curl -X GET "http://localhost:8080/api/waiters/search?name=jua&page=0&size=10&sort=name,asc" \
+  -H "Accept: application/json"
+```
