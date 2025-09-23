@@ -36,8 +36,17 @@ public class AppUserRepositoryAdapter implements AppUserRepository {
 
     @Override
     public boolean disableById(Long id, UserRole userRole) {
-        return repo.findEnabledById(id, userRole.name()).map(user -> {
+        return repo.findEnabledById(id, userRole.name(), true).map(user -> {
             user.setEnabled(false);
+            repo.save(user);
+            return true;
+        }).orElse(false);
+    }
+
+    @Override
+    public boolean enableById(Long id, UserRole userRole) {
+        return repo.findEnabledById(id, userRole.name(), false).map(user -> {
+            user.setEnabled(true);
             repo.save(user);
             return true;
         }).orElse(false);
@@ -58,8 +67,8 @@ public class AppUserRepositoryAdapter implements AppUserRepository {
     }
 
     @Override
-    public Optional<AppUser> findUserBy(String userIdNumber) {
-        return repo.findUserBy(userIdNumber).map(mapper::toDomain);
+    public Optional<AppUser> findUserBy(String userIdNumber, UserRole userRole, boolean enabled) {
+        return repo.findUserBy(userIdNumber, userRole.name(), enabled).map(mapper::toDomain);
     }
 
     @Override

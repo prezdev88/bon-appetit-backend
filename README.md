@@ -28,7 +28,7 @@ curl -i -X POST http://localhost:8080/api/waiters/login \
     -d '{"userIdNumber":"11222333"}'
 ```
 
-## Search
+## Search waiter
 ```bash
 curl -X GET "http://localhost:8080/api/waiters/search?name=jua&page=0&size=10&sort=name,asc" \
   -H "Accept: application/json"
@@ -37,4 +37,9 @@ curl -X GET "http://localhost:8080/api/waiters/search?name=jua&page=0&size=10&so
 ## Disable waiter
 ```bash
 curl -X DELETE http://localhost:8080/api/waiters/1
+```
+
+## Enable waiter
+```bash
+curl -X PATCH http://localhost:8080/api/waiters/1/enable
 ```

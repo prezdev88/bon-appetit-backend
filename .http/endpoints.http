@@ -34,3 +34,7 @@ Accept: application/json
 
 ### Disable a Waiter by id
 DELETE http://localhost:8080/api/waiters/1
+
+
+### Enable a Waiter by id
+PATCH http://localhost:8080/api/waiters/1/enable

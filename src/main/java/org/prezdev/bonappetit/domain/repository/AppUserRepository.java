@@ -14,6 +14,8 @@ public interface AppUserRepository {
     AppUser save(AppUser user);
     
     boolean disableById(Long id, UserRole userRole);
+
+    boolean enableById(Long id, UserRole userRole);
     
     List<AppUser> findAll();
 
@@ -21,5 +23,5 @@ public interface AppUserRepository {
 
     Page<AppUser> findAllByName(String name, int page, int size, Sort sort);
 
-    Optional<AppUser> findUserBy(String userIdNumber);
+    Optional<AppUser> findUserBy(String userIdNumber, UserRole userRole, boolean enabled);
 }

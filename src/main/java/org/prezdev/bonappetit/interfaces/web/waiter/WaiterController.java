@@ -5,9 +5,11 @@ import lombok.RequiredArgsConstructor;
 
 import org.prezdev.bonappetit.application.waiter.dto.AddWaiterCommand;
 import org.prezdev.bonappetit.application.waiter.dto.DisableWaiterCommand;
+import org.prezdev.bonappetit.application.waiter.dto.EnableWaiterCommand;
 import org.prezdev.bonappetit.application.waiter.dto.PageModel;
 import org.prezdev.bonappetit.application.waiter.AddWaiterService;
 import org.prezdev.bonappetit.application.waiter.DisableWaiterService;
+import org.prezdev.bonappetit.application.waiter.EnableWaiterService;
 import org.prezdev.bonappetit.application.waiter.ListWaitersService;
 import org.prezdev.bonappetit.application.waiter.LoginWaiterService;
 import org.prezdev.bonappetit.application.waiter.SearchWaiterService;
@@ -28,6 +30,7 @@ public class WaiterController {
     private final LoginWaiterService login;
     private final SearchWaiterService searchWaiter;
     private final DisableWaiterService disableWaiter;
+    private final EnableWaiterService enableWaiter;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -79,6 +82,16 @@ public class WaiterController {
         boolean disabled = disableWaiter.execute(new DisableWaiterCommand(waiterId));
         if (!disabled) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Waiter not found or already disabled");
+        }
+    }
+
+    // curl -X PATCH http://localhost:8080/api/waiters/1/enable
+    @PatchMapping("/{waiterId}/enable")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void enableWaiter(@PathVariable long waiterId) {
+        boolean enabled = enableWaiter.execute(new EnableWaiterCommand(waiterId));
+        if (!enabled) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Waiter not found or already enabled");
         }
     }
 }

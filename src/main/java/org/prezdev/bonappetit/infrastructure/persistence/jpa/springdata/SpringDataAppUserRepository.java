@@ -27,10 +27,10 @@ public interface SpringDataAppUserRepository extends JpaRepository<AppUserEntity
            FROM AppUserEntity u
            JOIN u.roles r
            WHERE u.userIdNumber = :userIdNumber
-             AND r.name = 'WAITER'
-             AND u.enabled = true
+             AND r.name = :userRole
+             AND u.enabled = :enabled
            """)
-    Optional<AppUserEntity> findUserBy(@Param("userIdNumber") String userIdNumber);
+    Optional<AppUserEntity> findUserBy(@Param("userIdNumber") String userIdNumber, @Param("userRole") String userRole, @Param("enabled") boolean enabled);
 
     @Query("""
        SELECT u
@@ -38,7 +38,7 @@ public interface SpringDataAppUserRepository extends JpaRepository<AppUserEntity
        JOIN u.roles r
        WHERE u.id = :id
          AND r.name = :userRole
-         AND u.enabled = true
+         AND u.enabled = :enabled
        """)
-    Optional<AppUserEntity> findEnabledById(@Param("id") Long id, @Param("userRole") String userRole);
+    Optional<AppUserEntity> findEnabledById(@Param("id") Long id, @Param("userRole") String userRole, @Param("enabled") boolean enabled);
 }
