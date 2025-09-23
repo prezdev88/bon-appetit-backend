@@ -1,6 +1,7 @@
 package org.prezdev.bonappetit.domain.repository;
 
 import org.prezdev.bonappetit.domain.model.AppUser;
+import org.prezdev.bonappetit.domain.model.UserRole;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 
@@ -12,7 +13,7 @@ public interface AppUserRepository {
     
     AppUser save(AppUser user);
     
-    boolean disableById(Long id);
+    boolean disableById(Long id, UserRole userRole);
     
     List<AppUser> findAll();
 

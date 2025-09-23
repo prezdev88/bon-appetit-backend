@@ -2,6 +2,7 @@ package org.prezdev.bonappetit.infrastructure.persistence.jpa;
 
 import lombok.RequiredArgsConstructor;
 import org.prezdev.bonappetit.domain.model.AppUser;
+import org.prezdev.bonappetit.domain.model.UserRole;
 import org.prezdev.bonappetit.domain.repository.AppUserRepository;
 import org.prezdev.bonappetit.infrastructure.persistence.jpa.entity.identity.AppUserEntity;
 import org.prezdev.bonappetit.infrastructure.persistence.jpa.mapper.AppUserJpaMapper;
@@ -34,8 +35,8 @@ public class AppUserRepositoryAdapter implements AppUserRepository {
     }
 
     @Override
-    public boolean disableById(Long id) {
-        return repo.findEnabledWaiterById(id).map(user -> {
+    public boolean disableById(Long id, UserRole userRole) {
+        return repo.findEnabledById(id, userRole.name()).map(user -> {
             user.setEnabled(false);
             repo.save(user);
             return true;

@@ -37,8 +37,8 @@ public interface SpringDataAppUserRepository extends JpaRepository<AppUserEntity
        FROM AppUserEntity u
        JOIN u.roles r
        WHERE u.id = :id
-         AND r.name = 'WAITER'
+         AND r.name = :userRole
          AND u.enabled = true
        """)
-    Optional<AppUserEntity> findEnabledWaiterById(@Param("id") Long id);
+    Optional<AppUserEntity> findEnabledById(@Param("id") Long id, @Param("userRole") String userRole);
 }
