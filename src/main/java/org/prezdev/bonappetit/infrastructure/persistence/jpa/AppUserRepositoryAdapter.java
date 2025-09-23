@@ -34,8 +34,12 @@ public class AppUserRepositoryAdapter implements AppUserRepository {
     }
 
     @Override
-    public void deleteById(Long id) {
-        repo.deleteById(id);
+    public boolean disableById(Long id) {
+        return repo.findEnabledWaiterById(id).map(user -> {
+            user.setEnabled(false);
+            repo.save(user);
+            return true;
+        }).orElse(false);
     }
 
     @Override

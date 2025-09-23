@@ -12,7 +12,7 @@ public interface AppUserRepository {
     
     AppUser save(AppUser user);
     
-    void deleteById(Long id);
+    boolean disableById(Long id);
     
     List<AppUser> findAll();
 

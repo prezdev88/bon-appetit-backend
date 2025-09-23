@@ -2,6 +2,7 @@ package org.prezdev.bonappetit.application.waiter;
 
 import lombok.RequiredArgsConstructor;
 
+import org.prezdev.bonappetit.application.waiter.dto.AddWaiterCommand;
 import org.prezdev.bonappetit.application.waiter.dto.WaiterDto;
 import org.prezdev.bonappetit.domain.model.AppRole;
 import org.prezdev.bonappetit.domain.model.AppUser;

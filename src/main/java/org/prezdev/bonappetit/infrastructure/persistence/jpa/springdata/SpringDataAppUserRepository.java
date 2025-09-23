@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface SpringDataAppUserRepository extends JpaRepository<AppUserEntity, Long> {
 
-    Page<AppUserEntity> findAllByRoles_Name(String roleName, Pageable pageable);
+	Page<AppUserEntity> findAllByRoles_Name(String roleName, Pageable pageable);
 
     @Query("""
        SELECT u
@@ -31,4 +31,14 @@ public interface SpringDataAppUserRepository extends JpaRepository<AppUserEntity
              AND u.enabled = true
            """)
     Optional<AppUserEntity> findUserBy(@Param("userIdNumber") String userIdNumber);
+
+    @Query("""
+       SELECT u
+       FROM AppUserEntity u
+       JOIN u.roles r
+       WHERE u.id = :id
+         AND r.name = 'WAITER'
+         AND u.enabled = true
+       """)
+    Optional<AppUserEntity> findEnabledWaiterById(@Param("id") Long id);
 }

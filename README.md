@@ -33,3 +33,8 @@ curl -i -X POST http://localhost:8080/api/waiters/login \
 curl -X GET "http://localhost:8080/api/waiters/search?name=jua&page=0&size=10&sort=name,asc" \
   -H "Accept: application/json"
 ```
+
+## Disable waiter
+```bash
+curl -X DELETE http://localhost:8080/api/waiters/1
+```
