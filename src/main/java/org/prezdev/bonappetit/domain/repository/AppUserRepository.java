@@ -18,5 +18,5 @@ public interface AppUserRepository {
 
     Page<AppUser> findAllByName(String name, int page, int size, Sort sort);
 
-    Optional<AppUser> findUserBy(String userIdNumber, UserRole userRole, boolean enabled);
+    Optional<AppUser> findEnabledUserBy(String userIdNumber, UserRole userRole);
 }

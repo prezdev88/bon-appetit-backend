@@ -18,8 +18,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AppUserRepositoryAdapter implements AppUserRepository {
 
-    private final SpringDataAppUserRepository repo;
     private final AppUserJpaMapper mapper;
+    private final SpringDataAppUserRepository repo;
 
     @Override
     public AppUser save(AppUser user) {
@@ -53,8 +53,8 @@ public class AppUserRepositoryAdapter implements AppUserRepository {
     }
 
     @Override
-    public Optional<AppUser> findUserBy(String userIdNumber, UserRole userRole, boolean enabled) {
-        return repo.findUserBy(userIdNumber, userRole.name(), enabled).map(mapper::toDomain);
+    public Optional<AppUser> findEnabledUserBy(String userIdNumber, UserRole userRole) {
+        return repo.findUserBy(userIdNumber, userRole.name(), true).map(mapper::toDomain);
     }
 
     @Override

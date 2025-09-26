@@ -14,7 +14,7 @@ public class LoginWaiterService {
     private final AppUserRepository userRepo;
 
     public LoginResponse login(String userIdNumber) {
-        return userRepo.findUserBy(userIdNumber, UserRole.WAITER, true)
+        return userRepo.findEnabledUserBy(userIdNumber, UserRole.WAITER)
             .map(user -> new LoginResponse(user.getId(), user.getName()))
             .orElseThrow(() -> new IllegalArgumentException("User not found"));
     }
