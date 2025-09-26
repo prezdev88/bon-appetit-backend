@@ -12,7 +12,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -21,11 +20,6 @@ public class AppUserRepositoryAdapter implements AppUserRepository {
 
     private final SpringDataAppUserRepository repo;
     private final AppUserJpaMapper mapper;
-
-    @Override
-    public Optional<AppUser> findById(Long id) {
-        return repo.findById(id).map(mapper::toDomain);
-    }
 
     @Override
     public AppUser save(AppUser user) {
@@ -50,14 +44,6 @@ public class AppUserRepositoryAdapter implements AppUserRepository {
             repo.save(user);
             return true;
         }).orElse(false);
-    }
-
-    @Override
-    public List<AppUser> findAll() {
-        return repo.findAll()
-                   .stream()
-                   .map(mapper::toDomain)
-                   .toList();
     }
 
     @Override

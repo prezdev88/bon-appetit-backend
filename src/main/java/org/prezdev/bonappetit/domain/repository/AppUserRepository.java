@@ -5,19 +5,14 @@ import org.prezdev.bonappetit.domain.model.UserRole;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface AppUserRepository {
-    Optional<AppUser> findById(Long id);
-    
     AppUser save(AppUser user);
     
     boolean disableById(Long id, UserRole userRole);
 
     boolean enableById(Long id, UserRole userRole);
-    
-    List<AppUser> findAll();
 
     Page<AppUser> findAllByRoleName(String roleName, int page, int size, Sort sort);
 
