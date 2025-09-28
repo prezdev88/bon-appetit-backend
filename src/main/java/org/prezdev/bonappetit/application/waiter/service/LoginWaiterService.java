@@ -1,8 +1,8 @@
-package org.prezdev.bonappetit.application.waiter;
+package org.prezdev.bonappetit.application.waiter.service;
 
+import org.prezdev.bonappetit.application.waiter.response.LoginResponse;
 import org.prezdev.bonappetit.domain.model.UserRole;
 import org.prezdev.bonappetit.domain.repository.AppUserRepository;
-import org.prezdev.bonappetit.interfaces.web.waiter.LoginResponse;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;

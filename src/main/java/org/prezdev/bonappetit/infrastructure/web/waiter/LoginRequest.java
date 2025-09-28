@@ -1,4 +1,4 @@
-package org.prezdev.bonappetit.interfaces.web.waiter;
+package org.prezdev.bonappetit.infrastructure.web.waiter;
 
 import jakarta.validation.constraints.NotBlank;
 

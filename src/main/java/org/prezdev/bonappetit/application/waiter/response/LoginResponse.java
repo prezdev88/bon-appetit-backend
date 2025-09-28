@@ -1,4 +1,4 @@
-package org.prezdev.bonappetit.interfaces.web.waiter;
+package org.prezdev.bonappetit.application.waiter.response;
 
 public record LoginResponse(
     long id,

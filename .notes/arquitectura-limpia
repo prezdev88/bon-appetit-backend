@@ -1,0 +1,30 @@
+=== Reglas de negocio en Arquitectura Limpia ===
+
+DOMAIN
+- Contiene las ENTIDADES, VALUE OBJECTS y EXCEPCIONES de dominio.
+- Aquí viven las INVARIANTES: reglas que siempre deben cumplirse para que el modelo sea válido.
+  Ej: un producto no puede tener precio <= 0, el nombre no puede ser vacío.
+- Lógica pura, sin frameworks ni acceso a infraestructura.
+
+APPLICATION
+- Contiene los CASOS DE USO (UseCases/Services).
+- Aquí viven las POLÍTICAS DE NEGOCIO y reglas de PROCESO que requieren coordinar entidades o consultar repositorios.
+  Ej: no permitir crear un producto si ya existe otro con el mismo nombre.
+- Usa los puertos definidos en domain (ej: ProductRepository).
+- Orquesta el flujo entre dominio y adapters.
+
+ADAPTERS / INFRASTRUCTURE
+- Implementan los puertos (repositorios, APIs, mensajería).
+- Contienen frameworks (Spring, JPA, Redis, Kafka, etc.).
+- Refuerzan las reglas con constraints técnicos (ej: UNIQUE en DB).
+- Traducen excepciones de negocio a respuestas técnicas (ej: HTTP 409).
+
+RESUMEN
+- Domain → Invariantes (reglas atómicas del modelo, puras).
+- Application → Procesos y políticas (reglas de negocio que requieren coordinación/repositorios).
+- Adapters → Implementación técnica y enforcement adicional.
+
+Regla de oro
+  Domain          → nada externo.
+  Application     → importa domain, pero no adapters/infra.
+  Adapters/Infra  → importan application y domain.

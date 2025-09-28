@@ -1,0 +1,98 @@
+Pasos para desarrollar un nuevo caso de uso
+
+Caso de uso: Add product
+------------------------
+
+------------------------------------------------------------------------
+                            INFRASTRUCTURE LAYER
+------------------------------------------------------------------------
+1.- Debe existir entidad en "infrastructure.persistence.jpa.entity.product"
+    ProductEntity.java
+
+2.- Debe existir un repositorio jpa para la entidad en capa de "infrastructure.persistence.jpa.springdata"
+    En este proyecto es : SpringDataProductRepository extends JpaRepository<ProductEntity, Long>
+
+
+------------------------------------------------------------------------
+                            DOMAIN LAYER
+------------------------------------------------------------------------
+3.- En "domain.model" debe existir la clase Product.java, que es similar a ProductEntity, pero con tipos de datos nativos
+
+4.- Debe existir un repositorio como interfaz en capa "domain.repository"
+    En este proyecto es: ProductRepository
+    Método: Product save(Product product);
+
+------------------------------------------------------------------------
+                            INFRASTRUCTURE LAYER
+------------------------------------------------------------------------
+5.- En "infrastructure.persistence.jpa.mapper" debe existir un mapper, 
+para parsear desde model domain a model entity y viceversa
+
+    @Mapper(componentModel = "spring")
+    public interface ProductJpaMapper {
+        Product toDomain(ProductEntity entity);
+
+        ProductEntity toEntity(Product domain);
+    }
+
+    en pom.xml
+        <!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- MapStruct -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>${mapstruct.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Necesario para que Lombok y MapStruct funcionen juntos -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok-mapstruct-binding</artifactId>
+			<version>0.2.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+6.- Debe existir una clase en capa "infrastructure.persistence.jpa"
+    En este proyecto es: ProductRepositoryAdapter implements ProductRepository
+
+    @Override
+    public Product save(Product product) {
+        ProductEntity entity = mapper.toEntity(product);
+        ProductEntity saved = repo.save(entity);
+        return mapper.toDomain(saved);
+    }
+
+------------------------------------------------------------------------
+                            APPLICATION LAYER
+------------------------------------------------------------------------
+application/
+└── product/
+    ├── command/
+    │   └── AddProductCommand.java
+    │       DTO (record) que representa los datos de entrada del caso de uso.
+    │       Es un objeto simple, sin dependencias de frameworks.
+    │
+    ├── service/
+    │   └── AddProductService.java
+    │       Implementación (interactor) del caso de uso.
+    │       Contiene la lógica para crear un producto y coordina el dominio
+    │       con los repositorios u otros servicios necesarios.
+    │
+    └── usecase/
+        └── AddProductUseCase.java
+            Interfaz (input port) que define el contrato del caso de uso.
+            Declara qué se puede hacer (crear un producto), pero no cómo.
+

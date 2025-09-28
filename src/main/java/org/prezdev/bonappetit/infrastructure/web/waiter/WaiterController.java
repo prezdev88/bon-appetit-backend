@@ -1,20 +1,21 @@
-package org.prezdev.bonappetit.interfaces.web.waiter;
+package org.prezdev.bonappetit.infrastructure.web.waiter;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-import org.prezdev.bonappetit.application.waiter.dto.AddWaiterCommand;
-import org.prezdev.bonappetit.application.waiter.dto.DisableWaiterCommand;
-import org.prezdev.bonappetit.application.waiter.dto.EnableWaiterCommand;
-import org.prezdev.bonappetit.application.waiter.dto.PageModel;
-import org.prezdev.bonappetit.application.waiter.AddWaiterService;
-import org.prezdev.bonappetit.application.waiter.DisableWaiterService;
-import org.prezdev.bonappetit.application.waiter.EnableWaiterService;
-import org.prezdev.bonappetit.application.waiter.ListWaitersService;
-import org.prezdev.bonappetit.application.waiter.LoginWaiterService;
-import org.prezdev.bonappetit.application.waiter.SearchWaiterService;
-import org.prezdev.bonappetit.application.waiter.dto.WaiterDto;
-import org.prezdev.bonappetit.application.waiter.dto.WaiterListDto;
+import org.prezdev.bonappetit.application.waiter.command.AddWaiterCommand;
+import org.prezdev.bonappetit.application.waiter.command.DisableWaiterCommand;
+import org.prezdev.bonappetit.application.waiter.command.EnableWaiterCommand;
+import org.prezdev.bonappetit.application.waiter.response.AddWaiterResponse;
+import org.prezdev.bonappetit.application.waiter.response.LoginResponse;
+import org.prezdev.bonappetit.application.waiter.response.PageModel;
+import org.prezdev.bonappetit.application.waiter.response.WaiterListDto;
+import org.prezdev.bonappetit.application.waiter.service.AddWaiterService;
+import org.prezdev.bonappetit.application.waiter.service.DisableWaiterService;
+import org.prezdev.bonappetit.application.waiter.service.EnableWaiterService;
+import org.prezdev.bonappetit.application.waiter.service.ListWaitersService;
+import org.prezdev.bonappetit.application.waiter.service.LoginWaiterService;
+import org.prezdev.bonappetit.application.waiter.service.SearchWaiterService;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +35,8 @@ public class WaiterController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public WaiterDto add(@Valid @RequestBody AddWaiterRequest req) {
-        return addWaiter.execute(new AddWaiterCommand(req));
+    public AddWaiterResponse add(@Valid @RequestBody AddWaiterRequest req) {
+        return addWaiter.execute(new AddWaiterCommand(req.userIdNumber(), req.name()));
     }
 
     @GetMapping

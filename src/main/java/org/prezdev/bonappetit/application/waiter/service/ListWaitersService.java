@@ -1,9 +1,9 @@
-package org.prezdev.bonappetit.application.waiter;
+package org.prezdev.bonappetit.application.waiter.service;
 
 import java.util.List;
 
-import org.prezdev.bonappetit.application.waiter.dto.PageModel;
-import org.prezdev.bonappetit.application.waiter.dto.WaiterListDto;
+import org.prezdev.bonappetit.application.waiter.response.PageModel;
+import org.prezdev.bonappetit.application.waiter.response.WaiterListDto;
 import org.prezdev.bonappetit.domain.model.AppUser;
 import org.prezdev.bonappetit.domain.repository.AppUserRepository;
 import org.springframework.data.domain.Page;

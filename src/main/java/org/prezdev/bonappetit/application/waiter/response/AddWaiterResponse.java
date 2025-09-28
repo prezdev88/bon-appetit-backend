@@ -1,8 +1,8 @@
-package org.prezdev.bonappetit.application.waiter.dto;
+package org.prezdev.bonappetit.application.waiter.response;
 
 import java.util.List;
 
-public record WaiterDto(
+public record AddWaiterResponse(
     Long id,
     String name,
     boolean enabled,

@@ -1,4 +1,4 @@
-package org.prezdev.bonappetit.application.waiter.dto;
+package org.prezdev.bonappetit.application.waiter.response;
 
 public record WaiterListDto(
     Long id,

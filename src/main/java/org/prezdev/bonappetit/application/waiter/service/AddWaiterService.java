@@ -1,9 +1,9 @@
-package org.prezdev.bonappetit.application.waiter;
+package org.prezdev.bonappetit.application.waiter.service;
 
 import lombok.RequiredArgsConstructor;
 
-import org.prezdev.bonappetit.application.waiter.dto.AddWaiterCommand;
-import org.prezdev.bonappetit.application.waiter.dto.WaiterDto;
+import org.prezdev.bonappetit.application.waiter.command.AddWaiterCommand;
+import org.prezdev.bonappetit.application.waiter.response.AddWaiterResponse;
 import org.prezdev.bonappetit.domain.model.AppRole;
 import org.prezdev.bonappetit.domain.model.AppUser;
 import org.prezdev.bonappetit.domain.repository.AppRoleRepository;
@@ -24,12 +24,12 @@ public class AddWaiterService {
     private static final String WAITER_ROLE = "WAITER";
 
     @Transactional
-    public WaiterDto execute(AddWaiterCommand cmd) {
-        if (cmd == null || !StringUtils.hasText(cmd.addWaiterRequest().name())) {
+    public AddWaiterResponse execute(AddWaiterCommand cmd) {
+        if (cmd == null || !StringUtils.hasText(cmd.name())) {
             throw new IllegalArgumentException("name is required");
         }
 
-        if (!StringUtils.hasText(cmd.addWaiterRequest().userIdNumber())) {
+        if (!StringUtils.hasText(cmd.userIdNumber())) {
             throw new IllegalArgumentException("user id number is required");
         }
 
@@ -39,9 +39,9 @@ public class AddWaiterService {
 
         // 2) Crear usuario habilitado con rol WAITER
         AppUser user = AppUser.builder()
-                .name(cmd.addWaiterRequest().name().trim())
+                .name(cmd.name().trim())
                 .enabled(true)
-                .userIdNumber(cmd.addWaiterRequest().userIdNumber().trim())
+                .userIdNumber(cmd.userIdNumber().trim())
                 .build();
         user.getRoles().add(waiterRole);
 
@@ -50,6 +50,6 @@ public class AddWaiterService {
 
         // 4) Mapear a DTO
         List<String> roles = saved.getRoles().stream().map(AppRole::getName).toList();
-        return new WaiterDto(saved.getId(), saved.getName(), saved.isEnabled(), roles);
+        return new AddWaiterResponse(saved.getId(), saved.getName(), saved.isEnabled(), roles);
     }
 }
