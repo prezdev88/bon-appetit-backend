@@ -4,7 +4,7 @@ Caso de uso: Add product
 ------------------------
 
 ------------------------------------------------------------------------
-                            INFRASTRUCTURE LAYER
+                            INFRASTRUCTURE LAYER (persistence JPA)
 ------------------------------------------------------------------------
 1.- Debe existir entidad en "infrastructure.persistence.jpa.entity.product"
     ProductEntity.java
@@ -96,3 +96,6 @@ application/
             Interfaz (input port) que define el contrato del caso de uso.
             Declara qué se puede hacer (crear un producto), pero no cómo.
 
+------------------------------------------------------------------------
+                            INFRASTRUCTURE LAYER (web)
+------------------------------------------------------------------------

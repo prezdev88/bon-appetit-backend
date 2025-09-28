@@ -1,4 +1,4 @@
-package org.prezdev.bonappetit.application.waiter.util;
+package org.prezdev.bonappetit.application.shared.util;
 
 import java.text.Normalizer;
 import org.springframework.stereotype.Component;

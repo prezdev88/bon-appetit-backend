@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.prezdev.bonappetit.application.waiter.response.PageModel;
 import org.prezdev.bonappetit.application.waiter.response.WaiterListDto;
+import org.prezdev.bonappetit.application.waiter.usecase.ListWaitersUseCase;
 import org.prezdev.bonappetit.domain.model.AppUser;
 import org.prezdev.bonappetit.domain.repository.AppUserRepository;
 import org.springframework.data.domain.Page;
@@ -14,12 +15,13 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class ListWaitersService {
+public class ListWaitersService implements ListWaitersUseCase {
 
     private final AppUserRepository userRepo;
 
     private static final String WAITER_ROLE = "WAITER";
 
+    @Override
     public PageModel<WaiterListDto> execute(int page, int size, Sort sort) {
         Page<AppUser> waitersDb = userRepo.findAllByRoleName(WAITER_ROLE, page, size, sort);
         

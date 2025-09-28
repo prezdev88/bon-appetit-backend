@@ -2,9 +2,10 @@ package org.prezdev.bonappetit.application.waiter.service;
 
 import java.util.List;
 
+import org.prezdev.bonappetit.application.shared.util.AccentNormalizer;
 import org.prezdev.bonappetit.application.waiter.response.PageModel;
 import org.prezdev.bonappetit.application.waiter.response.WaiterListDto;
-import org.prezdev.bonappetit.application.waiter.util.AccentNormalizer;
+import org.prezdev.bonappetit.application.waiter.usecase.SearchWaiterUseCase;
 import org.prezdev.bonappetit.domain.model.AppUser;
 import org.prezdev.bonappetit.domain.repository.AppUserRepository;
 import org.springframework.data.domain.Page;
@@ -15,11 +16,12 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class SearchWaiterService {
+public class SearchWaiterService implements SearchWaiterUseCase {
 
     private final AppUserRepository userRepo;
     private final AccentNormalizer accentNormalizer;
 
+    @Override
     public PageModel<WaiterListDto> execute(String name, int page, int size, Sort sort) {
         String normalizedName = accentNormalizer.normalize(name);
         Page<AppUser> waitersDb = userRepo.findAllByName(normalizedName, page, size, sort);

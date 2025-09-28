@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.prezdev.bonappetit.application.waiter.command.AddWaiterCommand;
 import org.prezdev.bonappetit.application.waiter.response.AddWaiterResponse;
+import org.prezdev.bonappetit.application.waiter.usecase.AddWaiterUseCase;
 import org.prezdev.bonappetit.domain.model.AppRole;
 import org.prezdev.bonappetit.domain.model.AppUser;
 import org.prezdev.bonappetit.domain.repository.AppRoleRepository;
@@ -16,13 +17,14 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AddWaiterService {
+public class AddWaiterService implements AddWaiterUseCase {
 
     private final AppUserRepository userRepo;
     private final AppRoleRepository roleRepo;
 
     private static final String WAITER_ROLE = "WAITER";
 
+    @Override
     @Transactional
     public AddWaiterResponse execute(AddWaiterCommand cmd) {
         if (cmd == null || !StringUtils.hasText(cmd.name())) {
