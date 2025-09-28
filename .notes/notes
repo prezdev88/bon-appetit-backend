@@ -4,7 +4,7 @@ Caso de uso: Add product
 ------------------------
 
 ------------------------------------------------------------------------
-                            INFRASTRUCTURE LAYER (persistence JPA)
+                INFRASTRUCTURE LAYER (persistence JPA)
 ------------------------------------------------------------------------
 1.- Debe existir entidad en "infrastructure.persistence.jpa.entity.product"
     ProductEntity.java
@@ -23,7 +23,7 @@ Caso de uso: Add product
     Método: Product save(Product product);
 
 ------------------------------------------------------------------------
-                            INFRASTRUCTURE LAYER
+                        INFRASTRUCTURE LAYER
 ------------------------------------------------------------------------
 5.- En "infrastructure.persistence.jpa.mapper" debe existir un mapper, 
 para parsear desde model domain a model entity y viceversa
@@ -97,5 +97,6 @@ application/
             Declara qué se puede hacer (crear un producto), pero no cómo.
 
 ------------------------------------------------------------------------
-                            INFRASTRUCTURE LAYER (web)
+                        INFRASTRUCTURE LAYER (web)
 ------------------------------------------------------------------------
+# acá voy, escribir todo lo relacionado con el endpoint

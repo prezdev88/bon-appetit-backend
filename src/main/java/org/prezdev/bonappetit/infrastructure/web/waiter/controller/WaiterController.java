@@ -1,4 +1,4 @@
-package org.prezdev.bonappetit.infrastructure.web.waiter;
+package org.prezdev.bonappetit.infrastructure.web.waiter.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +16,8 @@ import org.prezdev.bonappetit.application.waiter.service.EnableWaiterService;
 import org.prezdev.bonappetit.application.waiter.service.ListWaitersService;
 import org.prezdev.bonappetit.application.waiter.service.LoginWaiterService;
 import org.prezdev.bonappetit.application.waiter.service.SearchWaiterService;
+import org.prezdev.bonappetit.infrastructure.web.waiter.request.AddWaiterRequest;
+import org.prezdev.bonappetit.infrastructure.web.waiter.request.LoginRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
