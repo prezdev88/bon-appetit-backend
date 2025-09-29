@@ -10,12 +10,12 @@ import org.prezdev.bonappetit.application.waiter.response.AddWaiterResponse;
 import org.prezdev.bonappetit.application.waiter.response.LoginResponse;
 import org.prezdev.bonappetit.application.waiter.response.PageModel;
 import org.prezdev.bonappetit.application.waiter.response.WaiterListDto;
-import org.prezdev.bonappetit.application.waiter.service.AddWaiterService;
-import org.prezdev.bonappetit.application.waiter.service.DisableWaiterService;
-import org.prezdev.bonappetit.application.waiter.service.EnableWaiterService;
-import org.prezdev.bonappetit.application.waiter.service.ListWaitersService;
-import org.prezdev.bonappetit.application.waiter.service.LoginWaiterService;
-import org.prezdev.bonappetit.application.waiter.service.SearchWaiterService;
+import org.prezdev.bonappetit.application.waiter.usecase.AddWaiterUseCase;
+import org.prezdev.bonappetit.application.waiter.usecase.DisableWaiterUseCase;
+import org.prezdev.bonappetit.application.waiter.usecase.EnableWaiterUseCase;
+import org.prezdev.bonappetit.application.waiter.usecase.ListWaitersUseCase;
+import org.prezdev.bonappetit.application.waiter.usecase.LoginWaiterUseCase;
+import org.prezdev.bonappetit.application.waiter.usecase.SearchWaiterUseCase;
 import org.prezdev.bonappetit.infrastructure.web.waiter.request.AddWaiterRequest;
 import org.prezdev.bonappetit.infrastructure.web.waiter.request.LoginRequest;
 import org.springframework.data.domain.Sort;
@@ -28,12 +28,12 @@ import org.springframework.web.server.ResponseStatusException;
 @RequiredArgsConstructor
 public class WaiterController {
 
-    private final AddWaiterService addWaiter;
-    private final ListWaitersService listWaiters;
-    private final LoginWaiterService login;
-    private final SearchWaiterService searchWaiter;
-    private final DisableWaiterService disableWaiter;
-    private final EnableWaiterService enableWaiter;
+    private final AddWaiterUseCase addWaiter;
+    private final ListWaitersUseCase listWaiters;
+    private final LoginWaiterUseCase login;
+    private final SearchWaiterUseCase searchWaiter;
+    private final DisableWaiterUseCase disableWaiter;
+    private final EnableWaiterUseCase enableWaiter;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
