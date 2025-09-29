@@ -15,16 +15,18 @@ public class AddProductService implements AddProductUseCase {
     private final ProductRepository repo;
 
     @Override
-    public void execute(AddProductCommand cmd) {
+    public long execute(AddProductCommand cmd) {
         if (repo.existsByName(cmd.name())) {
             throw new IllegalArgumentException("Product with name " + cmd.name() + " already exists");
         }
 
-        repo.save(Product.builder()
+        Product product = repo.save(Product.builder()
             .name(cmd.name())
             .price(cmd.price())
             .enabled(cmd.enabled())
             .build());
+
+        return product.getId();
     }
 
 }

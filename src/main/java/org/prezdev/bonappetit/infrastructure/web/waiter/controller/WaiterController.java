@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/api/waiters")
 @RequiredArgsConstructor
+@RequestMapping("/api/waiters")
 public class WaiterController {
 
     private final AddWaiterUseCase addWaiter;

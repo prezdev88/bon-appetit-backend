@@ -38,3 +38,14 @@ DELETE http://localhost:8080/api/waiters/1
 
 ### Enable a Waiter by id
 PATCH http://localhost:8080/api/waiters/1/enable
+
+
+### Create a product
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+  "name": "Bebida Coca cola 500ml",
+  "price": 2590,
+  "enabled": true
+}
