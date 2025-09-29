@@ -99,4 +99,11 @@ application/
 ------------------------------------------------------------------------
                         INFRASTRUCTURE LAYER (web)
 ------------------------------------------------------------------------
-# acá voy, escribir todo lo relacionado con el endpoint
+web
+└── product
+    ├── controller
+    │   └── ProductController.java
+    ├── request
+    │   └── AddProductRequest.java
+    ├── response
+    │   └── AddProductResponse.java

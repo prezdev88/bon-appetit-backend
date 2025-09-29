@@ -23,7 +23,6 @@ public class ProductController {
 
     private final AddProductUseCase addProduct;
 
-    // curl -X POST http://localhost:8080/api/products -H "Content-Type: application/json" -d '{"name": "Pizza", "price": 9.99, "enabled": true}'
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public AddProductResponse add(@Valid @RequestBody AddProductRequest req) {
